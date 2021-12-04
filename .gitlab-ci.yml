@@ -9,17 +9,6 @@ before_script:
     - apk update
     - apk add curl
 
-hugo:
-    stage: build
-    script:
-    - apk add git
-    - git submodule update --init
-    - tar xf /tmp/hugo.tar.gz hugo -C /tmp/ && cp /tmp/hugo /usr/bin
-    - hugo --baseURL ${BASEURL}
-    artifacts:
-    paths:
-        - public
-
 push_keycdn:
     stage: deploy
     script:
