@@ -15,9 +15,9 @@ push_keycdn:
     script:
     - apk add openssh rsync
     - mkdir -p ~/.ssh
-    - echo 'rsync.keycdn.com,185.172.149.122 ecdsa-sha2-nistp256 AAAAE2VjZHNhLXNoYTItbmlzdHAyNTYAAAAIbmlzdHAyNTYAAABBBFM7Jqs3BqC+MSEoVsZ+YMKTjVIMTSKlZX2+0t88o4LZvd+BWt71SkXv4mQ↪ r7xKD59m7jeJcWiO43u7YQzi+Tgg=' >> ~/.ssh/known_hosts
-    - echo 'ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQDLzeOIbe8/KzqanjOA2Qe29LK9KOQxp6RJgU2VoW37pqSHws+ATREv5LoNbbRuRecmiQ4bqoOp8fZdwJq1vQJ6NGhEK0ZsmYvf9FhSratSC0jv2u2vdO7LjOoWcPojysceKTwfgbHKAt6oH0LzFRBn3/fuvtWnGJ28KaMfT0imOR34Zw/yJ7KjA3ny6GxkB9NFLWaRtU4nPimusGmnEJPXFWc87GwM43JDdCvj5ohPT9QYx0pUYJuy9EZJEHViHQMBOIMz0gIdMTtfEYIylI0ICFup7OSEJG6gfwn7FnKtcUv/PfPYkPnKCztbnbiv+lOS7xjWwB89yMX156qu/744O9oWMXtR3ezZNtzjuBuSjZjkNPFFnUaHDr9pQ5RZnMJD9VsE9Z6z6yIDZL3IORl9w2MBPYF2TV51eSAdP6p8MBuVyLZbNQDt3L0LNWnl3hUy4ece3lxovixbbEV8RhopNapQMJBPntCZZJjqdssXyzGVlqk8rb2j4kBfVmzdj6c= tristangodfrey@Tristans-Air' >> ~/.ssh/known_hosts
+    - echo 'rsync.keycdn.com ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIBIsfz7Di7PsCUPnXy8GxHJGTbTXjLqdr2ZZeeM2U1Bf' >> ~/.ssh/known_hosts
     - echo "${SSH_DEPLOY_KEY}" > ~/.ssh/id_rsa && chmod 600 ~/.ssh/id_rsa
     - rsync -rtvz --chmod=D2755,F644 --delete src/ ${KEYCDN_USER}@rsync.keycdn.com:${KEYCDN_ZONE_NAME}/
+
     only:
     - master
