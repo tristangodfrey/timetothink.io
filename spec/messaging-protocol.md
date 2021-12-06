@@ -6,7 +6,21 @@ Features:
 - Broker interop
 - Custom message parsers
 - Efficient broker queue ordering (based on message urgency, includes complex use-cases)
+- Due to its generality it can be implemented on a large set of existing protocols (GraphQL, REST, HTTP, SSH, WebSockets, etc.)
 
+## Components
+
+### Message Broker
+
+
+
+## Guarantees
+
+- Message delivery -> a valid message will always lead to a state change in the system
+- Eventual consistency -> messages will not be lost, and the state will eventually be consistent with the expected state for the given messages at `t + n`, where `t` is the send time, and `n` is the sum of temporal intervals for each
+function `f` that is to be executed for the given set of messages
+- Performance can be improved by tweaking the schedule inference algorithm (making it more optimistic in its estimates)
+- Idempotence -> resources (paradoxically) are defined as stateless pure functions, meaning that in the case of faulty message duplication, no unexpected behaviour will occurr.
 
 ## Queue Ordering
 
